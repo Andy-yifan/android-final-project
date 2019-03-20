@@ -12,13 +12,13 @@ import java.util.ArrayList;
 
 public class Show_local_search extends AppCompatActivity {
     ListView local_view;
-    private ArrayList<Info_holder> local_result;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_local_search);
         local_view = (ListView)findViewById(R.id.local_listview);
-        local_result = getIntent().getParcelableArrayListExtra("local");
+        ArrayList<Info_holder> local_result = getIntent().getParcelableArrayListExtra("local");
         CustomAdapter_simple customAdapter = new CustomAdapter_simple(this, R.layout.list_item,local_result);
         local_view.setAdapter(customAdapter);
         local_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -38,6 +38,7 @@ public class Show_local_search extends AppCompatActivity {
                     Toast.makeText(Show_local_search.this, "remove from your favourite "+Choosed_Name, Toast.LENGTH_SHORT).show();
                     pref.edit().clear().commit();
                 }else{
+
                     editor.putString("BusinessName",Choosed_Name);
                     editor.putString("BusinessInfo",Choosed_Info);
                     //System.out.print(customAdapter.getItem(position));
