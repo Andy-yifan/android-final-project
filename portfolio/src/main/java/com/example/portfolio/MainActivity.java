@@ -41,6 +41,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         requestQueue = Volley.newRequestQueue(getApplicationContext());
         readLiked();
         locationmanager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        getBusinessTypes();
     }
     public  Context getContext() {
         return context;
@@ -84,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
     public void general_search_listerner(View view) {
         String query = ((EditText) findViewById(R.id.editText)).getText().toString();
         if (option) {
-
             optionSearch();
         } else {
             simpleSearch();
@@ -96,10 +97,59 @@ public class MainActivity extends AppCompatActivity {
 
     private void optionSearch() {
 
+
     }
 
+    public void getBusinessTypes() {
+        final String url = "http://api.ratings.food.gov.uk/BusinessTypes";
+        JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray Business_type_contents = response.getJSONArray("businessTypes");
+                            ArrayList<Businesstype_holder> businesstype_holder = new ArrayList<>();
+                            for (int i = 0; i < Business_type_contents.length(); i++) {
+                                JSONObject CONTENT = Business_type_contents.getJSONObject(i);
+                                String BusinessType = CONTENT.getString("BusinessTypeName");
+                                String BusinessId = CONTENT.getString("BusinessTypeId");
+                                Businesstype_holder temp = new Businesstype_holder(BusinessType,BusinessId);
+                                System.out.print(temp.toString());
+                                businesstype_holder.add(temp);
+                                ArrayAdapter<Businesstype_holder> adapter = new ArrayAdapter<>(
+                                        getApplicationContext(), android.R.layout.simple_spinner_item, businesstype_holder);
+
+                                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                                ((Spinner) findViewById(R.id.BusinessType_spinner)).setAdapter(adapter);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.err.println("Failed to get Business Types");
+                        error.printStackTrace();
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> existingHeaders = super.getHeaders();
+                HashMap<String, String> newHeaders = new HashMap<>(existingHeaders);
+                newHeaders.put("x-api-version", "2");
+                return newHeaders;
+            }
+        };
+        requestQueue.add(getRequest);
+
+    }
+
+
     public void local_listerner(View view) {
-        System.out.print("hahahahaha");
+
         localSearch();
     }
 
@@ -230,10 +280,14 @@ public class MainActivity extends AppCompatActivity {
     }
     public void reset_listerner(View view) {
         SharedPreferences pref = getSharedPreferences("Likedlist",MODE_PRIVATE);
-        pref.edit().clear().commit();
-//        finish();
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        if(pref.getString("BusinessName","").isEmpty()){
+            Toast.makeText(MainActivity.this, "You like nothing", Toast.LENGTH_SHORT).show();
+        }else{
+            pref.edit().clear().commit();
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+        }
+
 
     }
 

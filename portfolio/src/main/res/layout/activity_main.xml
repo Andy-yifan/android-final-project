@@ -110,7 +110,7 @@
         android:id="@+id/rate_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginBottom="22dp"
         android:text="Sort by Rating"
         app:layout_constraintBottom_toTopOf="@+id/businesstype_tv"
@@ -134,14 +134,14 @@
         android:id="@+id/businesstype_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:text="Sort by Business Type"
-        app:layout_constraintBottom_toTopOf="@+id/BusinessType"
+        app:layout_constraintBottom_toTopOf="@+id/BusinessType_spinner"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
-        android:id="@+id/BusinessType"
-        android:layout_width="0dp"
+        android:id="@+id/BusinessType_spinner"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="41dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -153,10 +153,11 @@
         android:id="@+id/Region_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
         android:text="Sort Region"
-        app:layout_constraintStart_toStartOf="@+id/BusinessType"
-        app:layout_constraintTop_toBottomOf="@+id/BusinessType" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/businesstype_tv" />
 
     <Spinner
         android:id="@+id/RegionType"
@@ -171,9 +172,9 @@
         android:id="@+id/Local_Authority"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:text="Sort Local Authority"
-        app:layout_constraintStart_toStartOf="@+id/RegionType"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/RegionType" />
 
     <Spinner
@@ -191,10 +192,10 @@
         android:id="@+id/mile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Sort by distance"
-        app:layout_constraintStart_toStartOf="@+id/RegionType"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Authority_type" />
 
     <SeekBar
