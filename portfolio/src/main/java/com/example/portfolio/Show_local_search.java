@@ -38,7 +38,6 @@ public class Show_local_search extends AppCompatActivity {
                     Toast.makeText(Show_local_search.this, "remove from your favourite "+Choosed_Name, Toast.LENGTH_SHORT).show();
                     pref.edit().clear().commit();
                 }else{
-
                     editor.putString("BusinessName",Choosed_Name);
                     editor.putString("BusinessInfo",Choosed_Info);
                     //System.out.print(customAdapter.getItem(position));

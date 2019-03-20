@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         readLiked();
         locationmanager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         getBusinessTypes();
+        getRegions();
     }
     public  Context getContext() {
         return context;
@@ -137,16 +138,61 @@ public class MainActivity extends AppCompatActivity {
                 }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String, String> existingHeaders = super.getHeaders();
-                HashMap<String, String> newHeaders = new HashMap<>(existingHeaders);
-                newHeaders.put("x-api-version", "2");
-                return newHeaders;
+                Map<String, String> params  = new HashMap<String, String>();
+                params.put("x-api-version", "2");
+                return params;
             }
         };
         requestQueue.add(getRequest);
 
     }
 
+    public void getRegions() {
+        final String url = "http://api.ratings.food.gov.uk/Regions";
+        JsonObjectRequest getRequest = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONArray contents = response.getJSONArray("regions");
+                            ArrayList<Region_holder> region_holder = new ArrayList<>();
+                            for (int i = 0; i < contents.length(); i++) {
+                                JSONObject CONTENT = contents.getJSONObject(i);
+                                String name = CONTENT.getString("name");
+                                String nameKey = CONTENT.getString("nameKey");
+                                String id = CONTENT.getString("id");
+                                Region_holder temp = new Region_holder(name,nameKey,id);
+                                System.out.print(temp.getName());
+                                region_holder.add(temp);
+                                ArrayAdapter<Region_holder> adapter = new ArrayAdapter<>(
+                                        getApplicationContext(), android.R.layout.simple_spinner_item, region_holder);
+
+                                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                                ((Spinner) findViewById(R.id.RegionType)).setAdapter(adapter);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.err.println("Failed to get Region Types");
+                        error.printStackTrace();
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params  = new HashMap<String, String>();
+                params.put("x-api-version", "2");
+                return params;
+            }
+        };
+        requestQueue.add(getRequest);
+
+    }
 
     public void local_listerner(View view) {
 
