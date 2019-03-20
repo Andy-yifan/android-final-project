@@ -6,31 +6,28 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class Show_simple_search extends AppCompatActivity {
-
-    ListView simple_view;
-
-    private ArrayList<Info_holder>simple_result;
+public class Show_local_search extends AppCompatActivity {
+    ListView local_view;
+    private ArrayList<Info_holder> local_result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_show_simple_search);
-        simple_view = (ListView)findViewById(R.id.simple_listview);
-        simple_result = getIntent().getParcelableArrayListExtra("simple");
-        CustomAdapter_simple customAdapter = new CustomAdapter_simple(this, R.layout.list_item,simple_result);
-        simple_view.setAdapter(customAdapter);
-        simple_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        setContentView(R.layout.activity_show_local_search);
+        local_view = (ListView)findViewById(R.id.local_listview);
+        local_result = getIntent().getParcelableArrayListExtra("local");
+        CustomAdapter_simple customAdapter = new CustomAdapter_simple(this, R.layout.list_item,local_result);
+        local_view.setAdapter(customAdapter);
+        local_view.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                TextView tv = (TextView)view;
                 String Choosed_Name = customAdapter.getItem(position).getName();
                 String Choosed_Info = customAdapter.getItem(position).getinfo();
-                Toast.makeText(Show_simple_search.this, "save to your favourite "+Choosed_Name, Toast.LENGTH_SHORT).show();
+                Toast.makeText(Show_local_search.this,"saved: "+Choosed_Name, Toast.LENGTH_SHORT).show();
                 //System.out.print(tv.getText()+"\n");
                 //System.out.print(customAdapter.getItem(position));
                 SharedPreferences.Editor editor = getSharedPreferences("Likedlist",MODE_PRIVATE).edit();
@@ -38,7 +35,7 @@ public class Show_simple_search extends AppCompatActivity {
                 String name = pref.getString("BusinessName","");
                 String info = pref.getString("BusinessInfo","");
                 if(name.equals(Choosed_Name)){
-                    Toast.makeText(Show_simple_search.this, "remove from your favourite "+Choosed_Name, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Show_local_search.this, "remove from your favourite "+Choosed_Name, Toast.LENGTH_SHORT).show();
                     pref.edit().clear().commit();
                 }else{
                     editor.putString("BusinessName",Choosed_Name);
@@ -47,16 +44,9 @@ public class Show_simple_search extends AppCompatActivity {
                     editor.commit();
                 }
 
-
             }
         });
-
     }
-
-
-
-
-
 
 
 }

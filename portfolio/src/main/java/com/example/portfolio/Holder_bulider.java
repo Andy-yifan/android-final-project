@@ -130,6 +130,7 @@ public class Holder_bulider {
     public void setPageSize(String pageSize) {
         this.pageSize = pageSize;
     }
+
     public static Holder_bulider inits() {
         return new Holder_bulider();
     }

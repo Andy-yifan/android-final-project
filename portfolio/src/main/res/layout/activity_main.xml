@@ -66,36 +66,73 @@
         app:layout_constraintStart_toEndOf="@+id/editText" />
 
     <Button
-        android:id="@+id/option_button"
+        android:id="@+id/local_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:text="More"
+        android:text="Show Around U"
         android:textSize="12dp"
-        
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toEndOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/general_search_button" />
-
+        app:layout_constraintTop_toBottomOf="@+id/general_search_button"
+        android:onClick="local_listerner"
+        />
 
     <Button
-        android:id="@+id/favourite_button"
+        android:id="@+id/delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="8dp"
+        android:text="reset favourite"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toEndOf="@+id/favourite_text"
+        app:layout_constraintTop_toBottomOf="@+id/general_search_button"
+        android:onClick="reset_listerner"
+        />
+
+    <TextView
+        android:id="@+id/empty_list_view"
+        android:layout_width="8dp"
+        android:layout_height="7dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="data_is_null"
+        android:textSize="20sp"
+        android:visibility="gone" />
+
+
+
+    <TextView
+        android:id="@+id/favourite_text"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
         android:padding="10dp"
-        android:text="Your favourite"
+        android:text="Your Favourite Shop:"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option_button" />
+        app:layout_constraintTop_toBottomOf="@+id/local_button" />
 
-
+    <ListView
+        android:id="@+id/Like_listview"
+        android:layout_width="wrap_content"
+        android:layout_height="313dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/favourite_text" />
 
 </android.support.constraint.ConstraintLayout>

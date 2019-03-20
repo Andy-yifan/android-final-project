@@ -49,6 +49,16 @@ public class Input_holder {
         s_holder.append(String.format("pageSize=%s&", pageSize));
         return s_holder.toString();
     }
+    public String local_url(){
+        StringBuilder l_holder = new StringBuilder();
+        l_holder.append("http://api.ratings.food.gov.uk/Establishments?");
+        l_holder.append(String.format("longitude=%s&", longitude));
+        l_holder.append(String.format("latitude=%s&", latitude));
+        l_holder.append(String.format("sortOptionKey=%s&", sortOptionKey));
+        l_holder.append(String.format("pageSize=%s&", pageSize));
+
+        return l_holder.toString();
+    }
 
 
 }
