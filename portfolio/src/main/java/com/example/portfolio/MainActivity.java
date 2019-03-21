@@ -107,6 +107,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        //update cb when spinner is changed
+        ((Spinner)findViewById(R.id.BusinessType_spinner)).setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((CheckBox) findViewById(R.id.businesstype_cb)).setChecked(true);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
 
     CheckBox region_cb = (CheckBox) findViewById(R.id.Region_cb);
     region_cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
