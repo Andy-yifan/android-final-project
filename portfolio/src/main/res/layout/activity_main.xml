@@ -107,17 +107,17 @@
 
 
     <CheckBox
-        android:id="@+id/rate_tv"
+        android:id="@+id/rate_cb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="22dp"
-        android:text="Sort by Rating"
-        app:layout_constraintBottom_toTopOf="@+id/businesstype_tv"
+        android:text="Filter by Rating"
+        app:layout_constraintBottom_toTopOf="@+id/businesstype_cb"
         app:layout_constraintStart_toStartOf="parent" />
 
     <RatingBar
-        android:id="@+id/Rating"
+        android:id="@+id/Rating_br"
         style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="17dp"
@@ -127,15 +127,15 @@
         android:numStars="5"
         android:rating="3"
         android:stepSize="1"
-        app:layout_constraintBottom_toBottomOf="@+id/rate_tv"
-        app:layout_constraintStart_toEndOf="@+id/rate_tv" />
+        app:layout_constraintBottom_toBottomOf="@+id/rate_cb"
+        app:layout_constraintStart_toEndOf="@+id/rate_cb" />
 
     <CheckBox
-        android:id="@+id/businesstype_tv"
+        android:id="@+id/businesstype_cb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Sort by Business Type"
+        android:text="Filter by Business Type"
         app:layout_constraintBottom_toTopOf="@+id/BusinessType_spinner"
         app:layout_constraintStart_toStartOf="parent"
      />
@@ -153,72 +153,76 @@
         android:gravity="center"/>
 
     <CheckBox
-        android:id="@+id/Region_tv"
+        android:id="@+id/Region_cb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:text="Sort Region"
+        android:layout_marginBottom="8dp"
+        android:text="Filter by Region"
+        app:layout_constraintBottom_toTopOf="@+id/RegionType_spinner"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/businesstype_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/businesstype_cb" />
 
     <Spinner
-        android:id="@+id/RegionType"
+        android:id="@+id/RegionType_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="276dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BusinessType_spinner"
+        android:gravity="center"
         android:textAlignment="gravity"
-        android:gravity="center"/>
-
-    <CheckBox
-        android:id="@+id/Local_Authority"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Sort Local Authority"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RegionType" />
-
-    <Spinner
-        android:id="@+id/Authority_type"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Local_Authority" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-
-    <CheckBox
-        android:id="@+id/mile"
+    <TextView
+        android:id="@+id/Local_Authority_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Sort by distance"
+        android:text="choose Local Authority"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Authority_type" />
+        app:layout_constraintTop_toBottomOf="@+id/RegionType_spinner" />
 
-    <SeekBar
-        android:id="@+id/seekRadius"
-        style="@style/Widget.AppCompat.ActionBar.TabBar"
-        android:layout_width="0dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:max="250"
-        android:progress="30"
+    <Spinner
+        android:id="@+id/Authority_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:textAlignment="gravity"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mile" />
+        app:layout_constraintTop_toBottomOf="@+id/Local_Authority_tv" />
+
+
+    <CheckBox
+        android:id="@+id/mile_cb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Filter by distance"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Authority_spinner" />
+
+    <Spinner
+        android:id="@+id/mile_spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:textAlignment="gravity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintStart_toEndOf="@+id/mile_cb"
+        app:layout_constraintTop_toBottomOf="@+id/Authority_spinner" />
+
 
 
 

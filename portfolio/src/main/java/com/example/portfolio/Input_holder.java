@@ -39,26 +39,37 @@ public class Input_holder {
         StringBuilder s_holder = new StringBuilder();
         s_holder.append("http://api.ratings.food.gov.uk/Establishments?");
 
-        if (address == null){
+        if (name != null) {
             s_holder.append(String.format("name=%s&", name));
         }
-        else{
-            s_holder.append(String.format("address=%s&", address));
+        if(sortOptionKey!=null){
+            s_holder.append(String.format("sortOptionKey=%s&", sortOptionKey));
         }
-        s_holder.append(String.format("sortOptionKey=%s&", sortOptionKey));
-        s_holder.append(String.format("pageSize=%s&", pageSize));
+        if(pageSize!=null){
+            s_holder.append(String.format("pageSize=%s&", pageSize));
+        }
+        if(longitude!=null){
+            s_holder.append(String.format("longitude=%s&", longitude));
+        }
+        if(latitude!=null){
+            s_holder.append(String.format("latitude=%s&", latitude));
+        }
+        if(businessTypeId != null) {
+            s_holder.append(String.format("businessTypeId=%s&", businessTypeId));
+        }
+        if (ratingKey != null) {
+            s_holder.append(String.format("ratingKey=%s&", ratingKey));
+        }
+        if(localAuthorityId != null) {
+            s_holder.append(String.format("localAuthorityId=%s&", localAuthorityId));
+        }
+        if(maxDistanceLimit != null) {
+            s_holder.append(String.format("maxDistanceLimit=%s&", maxDistanceLimit));
+        }
+
         return s_holder.toString();
     }
-    public String local_url(){
-        StringBuilder l_holder = new StringBuilder();
-        l_holder.append("http://api.ratings.food.gov.uk/Establishments?");
-        l_holder.append(String.format("longitude=%s&", longitude));
-        l_holder.append(String.format("latitude=%s&", latitude));
-        l_holder.append(String.format("sortOptionKey=%s&", sortOptionKey));
-        l_holder.append(String.format("pageSize=%s&", pageSize));
 
-        return l_holder.toString();
-    }
 
 
 }
